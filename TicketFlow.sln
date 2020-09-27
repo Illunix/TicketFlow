@@ -1,0 +1,41 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketFlow.Web", "src\TicketFlow.Web\TicketFlow.Web.csproj", "{0858A34B-838C-4206-B4DB-384E5CB197B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketFlow.Application", "src\TicketFlow.Application\TicketFlow.Application.csproj", "{74832FD2-90A1-402D-8F35-D76EE114AF38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketFlow.Core", "src\TicketFlow.Core\TicketFlow.Core.csproj", "{E91C67AC-50C8-46EC-9F69-41684201B75D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketFlow.Infrastructure", "src\TicketFlow.Infrastructure\TicketFlow.Infrastructure.csproj", "{AFDCAF81-02C7-4272-96D6-92DBC6DC78F3}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{67051389-E484-4C4F-A15C-D96B13483A04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0858A34B-838C-4206-B4DB-384E5CB197B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0858A34B-838C-4206-B4DB-384E5CB197B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0858A34B-838C-4206-B4DB-384E5CB197B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0858A34B-838C-4206-B4DB-384E5CB197B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74832FD2-90A1-402D-8F35-D76EE114AF38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74832FD2-90A1-402D-8F35-D76EE114AF38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74832FD2-90A1-402D-8F35-D76EE114AF38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74832FD2-90A1-402D-8F35-D76EE114AF38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E91C67AC-50C8-46EC-9F69-41684201B75D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E91C67AC-50C8-46EC-9F69-41684201B75D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E91C67AC-50C8-46EC-9F69-41684201B75D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E91C67AC-50C8-46EC-9F69-41684201B75D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFDCAF81-02C7-4272-96D6-92DBC6DC78F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDCAF81-02C7-4272-96D6-92DBC6DC78F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDCAF81-02C7-4272-96D6-92DBC6DC78F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDCAF81-02C7-4272-96D6-92DBC6DC78F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67051389-E484-4C4F-A15C-D96B13483A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67051389-E484-4C4F-A15C-D96B13483A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67051389-E484-4C4F-A15C-D96B13483A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67051389-E484-4C4F-A15C-D96B13483A04}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
