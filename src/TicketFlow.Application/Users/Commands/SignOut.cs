@@ -1,7 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using TicketFlow.Application.Users.Interfaces;
+using Microsoft.AspNetCore.Http;
+using TicketFlow.Application.Users.Services;
 
 namespace TicketFlow.Application.Users.Commands
 {
@@ -13,16 +14,20 @@ namespace TicketFlow.Application.Users.Commands
 
         private class CommandHandler : AsyncRequestHandler<Command>
         {
-            private readonly IIdentityService _identityService;
+            private readonly IHttpContextAccessor _httpContextAccessor;
+            private readonly ITokenManager _tokenManager;
 
-            public CommandHandler(IIdentityService identityService)
+            public CommandHandler(IHttpContextAccessor httpContextAccessor, ITokenManager tokenManager)
             {
-                _identityService = identityService;
+                _httpContextAccessor = httpContextAccessor;
+                _tokenManager = tokenManager;
             }
 
             protected override async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                _identityService.SignOut();
+                _httpContextAccessor.HttpContext.Response.Cookies.Delete("token");
+
+                await _tokenManager.DeactiveCurrentToken();
             }
         }
     }

@@ -1,5 +1,4 @@
 using TicketFlow.Application.Users.DTO;
-using TicketFlow.Application.Users.Interfaces;
 using TicketFlow.Core.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -11,6 +10,11 @@ using System.Text;
 
 namespace TicketFlow.Application.Users.Services
 {
+    public interface IJwtHandler
+    {
+        JwtDto CreateToken(string userId, string role);
+    }
+
     public class JwtHandler : IJwtHandler
     {
         private readonly IOptions<JwtOptions> _options;
@@ -25,11 +29,6 @@ namespace TicketFlow.Application.Users.Services
 
         public JwtDto CreateToken(string userId, string role)
         {
-            if (string.IsNullOrWhiteSpace(userId))
-            {
-                throw new ArgumentException("User id claim can not be empty.", nameof(userId));
-            }
-
             var now = DateTime.UtcNow;
             var nowEpoch = new DateTimeOffset(now).ToUnixTimeSeconds();
             var jwtClaims = new List<Claim>

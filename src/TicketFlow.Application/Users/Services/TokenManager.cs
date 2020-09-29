@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using System.Linq;
-using TicketFlow.Application.Users.Interfaces;
 using TicketFlow.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
@@ -10,6 +9,13 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace TicketFlow.Application.Users.Services
 {
+    public interface ITokenManager
+    {
+        string GetCurrentToken();
+        Task<bool> IsCurrentTokenActive();
+        Task DeactiveCurrentToken();
+    }
+
     public class TokenManager : ITokenManager
     {
         private readonly IDistributedCache _cache;

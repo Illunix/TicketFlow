@@ -7,7 +7,7 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using TicketFlow.Core.Entities;
 using TicketFlow.Infrastructure.Data;
-using TicketFlow.Application.Users.Interfaces;
+using TicketFlow.Application.Users.Services;
 
 namespace TicketFlow.Application.Users.Commands
 {

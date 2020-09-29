@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using MediatR;
 using FluentValidation;
-using TicketFlow.Application.Users.Interfaces;
+using TicketFlow.Application.Users.Services;
 using TicketFlow.Infrastructure.Data;
 
 namespace TicketFlow.Application.Users.Commands
@@ -46,15 +46,13 @@ namespace TicketFlow.Application.Users.Commands
         {
             private readonly ApplicationDbContext _context;
             private readonly IHttpContextAccessor _httpContextAccessor;
-            private readonly IIdentityService _identityService;
             private readonly IJwtHandler _jwtHandler;
             private readonly ITokenManager _tokenManager;
 
-            public CommandHandler(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IIdentityService identityService, IJwtHandler jwtHandler, ITokenManager tokenManager)
+            public CommandHandler(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, IJwtHandler jwtHandler, ITokenManager tokenManager)
             {
                 _context = context;
                 _httpContextAccessor = httpContextAccessor;
-                _identityService = identityService;
                 _jwtHandler = jwtHandler;
                 _tokenManager = tokenManager;
             }
@@ -65,9 +63,15 @@ namespace TicketFlow.Application.Users.Commands
                     .Where(user => user.Email == request.Email)
                     .FirstOrDefaultAsync();
 
-                var token = _jwtHandler.CreateToken(user.Id.ToString(), user.Role);
+                var jwt = _jwtHandler.CreateToken(user.Id.ToString(), user.Role);
 
-                _identityService.SignIn(token);
+                _httpContextAccessor.HttpContext.Response.Cookies.Append(
+                    "token",
+                    jwt.AccessToken,
+                    new CookieOptions()
+                    {
+                        HttpOnly = true
+                    });
             }
         }
     }

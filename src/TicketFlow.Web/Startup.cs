@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using TicketFlow.Infrastructure;
 using TicketFlow.Infrastructure.Data;
 using TicketFlow.Application;
+using TicketFlow.Web.Framework;
 using TicketFlow.Application.Users.Commands;
 using FluentValidation.AspNetCore;
 
@@ -28,22 +29,19 @@ namespace TicketFlow.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                 .AddFluentValidation(cfg =>
+                {
+                    cfg.RegisterValidatorsFromAssemblyContaining<SignIn.CommandValidator>();
+                    cfg.RegisterValidatorsFromAssemblyContaining<SignUp.CommandValidator>();
+                });
 
             services.AddRouting(options => options.LowercaseUrls = true);
 
             services.AddAutoMapper();
             services.AddMediatR();
             services.AddEntityFramework();
-
             services.AddJwt();        
-
-            services.AddMvc()
-            .AddFluentValidation(cfg =>
-            {
-                cfg.RegisterValidatorsFromAssemblyContaining<SignIn.CommandValidator>();
-                cfg.RegisterValidatorsFromAssemblyContaining<SignUp.CommandValidator>();
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +61,8 @@ namespace TicketFlow.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseMiddleware<TokenMiddleware>();
 
             app.UseAuthorization();
 

@@ -1,10 +1,10 @@
 ﻿
 
-@using TicketFlow.Application.Users.Interfaces
+@using TicketFlow.Application.Users.Services
 
-@inject IIdentityService IIdentityService
+@inject ISignInManager IISignInManager
 
-@if (IIdentityService.IsSignedIn())
+@if (IISignInManager.IsSignedIn())
 {
     <div class="dropdown show">
         <a class="nav-link text-dark" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

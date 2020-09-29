@@ -10,7 +10,6 @@ using AutoMapper;
 using MediatR;
 using TicketFlow.Core.Models;
 using TicketFlow.Application.Users.Commands;
-using TicketFlow.Application.Users.Interfaces;
 using TicketFlow.Application.Users.Services;
 
 namespace TicketFlow.Application
@@ -59,7 +58,7 @@ namespace TicketFlow.Application
             services.AddSingleton<ITokenManager, TokenManager>();
             services.AddSingleton<IPasswordHasher<IPasswordService>, PasswordHasher<IPasswordService>>();
             services.AddSingleton<IPasswordService, PasswordService>();
-            services.AddSingleton<IIdentityService, IdentityService>();
+            services.AddSingleton<ISignInManager, SignInManager>();
 
             return services;
         }

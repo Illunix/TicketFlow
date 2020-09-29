@@ -3,12 +3,16 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TicketFlow.Application.Users.DTO;
-using TicketFlow.Application.Users.Interfaces;
 using TicketFlow.Infrastructure.Data;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace TicketFlow.Application.Users.Services
 {
+    public interface IUserManager
+    {
+        Task<UserDto> GetCurrentUser();
+    }
+
     public class UserManager : IUserManager
     {
         private readonly ApplicationDbContext _context;

@@ -1,8 +1,13 @@
 using Microsoft.AspNetCore.Identity;
-using TicketFlow.Application.Users.Interfaces;
 
 namespace TicketFlow.Application.Users.Services
 {
+    public interface IPasswordService
+    {
+        bool IsValid(string hash, string password);
+        string Hash(string pasword);
+    }
+
     public class PasswordService : IPasswordService
     {
         private readonly IPasswordHasher<IPasswordService> _passwordHasher;
